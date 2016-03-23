@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manager.mapping.SaleMapper" >
+  <resultMap id="BaseResultMap" type="com.manager.entity.Product" >
+    <id column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SALEMONEY" property="salemoney" jdbcType="FLOAT" />
+    <result column="COST" property="cost" jdbcType="FLOAT" />
+  </resultMap>
+  <resultMap type="com.manager.entity.SaleBudgetList" id="budgetlist">
+  	<result column="PID" property="pid" jdbcType="VARCHAR"/>
+    <result column="YEAR" property="year" jdbcType="VARCHAR"/>
+    <result column="TIME" property="time" jdbcType="VARCHAR"/>
+    <result column="NAME" property="name" jdbcType="VARCHAR"/>
+    <result column="COST" property="cost" jdbcType="FLOAT"/>
+    <result column="COUNT" property="count" jdbcType="INTEGER"/>
+    <result column="MONEY" property="money" jdbcType="FLOAT"/> 
+  </resultMap>
+   <resultMap type="com.manager.entity.Time" id="timeMap">
+  	<result column="YEAR" property="year" jdbcType="VARCHAR"/>
+  	<result column="TIME" property="time" jdbcType="VARCHAR"/>
+  	<result column="FORMATTIME" property="formattime" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PID, NAME, SALEMONEY,COST
+  </sql>
+
+  <select id="selectProducts" resultMap="BaseResultMap">
+  select 
+   <include refid="Base_Column_List" />
+   from PRODUCT
+  </select>
+ 
+  <select id="check"  resultType="int" parameterType="com.manager.entity.SaleCheckentity">
+  	select count(HID)
+  	from SALEHISTORY where YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} and TYPE=#{type,jdbcType=INTEGER}
+  </select>
+  <insert id="saveSaleHistory" parameterType="com.manager.entity.SaleHistory" >
+  insert into
+   SALEHISTORY (HID,YEAR,TIME,TYPE)
+  
+  values(#{hid,jdbcType=VARCHAR},#{year,jdbcType=VARCHAR},#{time,jdbcType=VARCHAR},#{type,jdbcType=INTEGER})
+  
+  </insert>
+  <insert id="savePSconn" parameterType="com.manager.entity.SaleHistory">
+  insert into 
+  PSCONN (HID,PID,COUNT)
+  values(#{hid,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{count,jdbcType=INTEGER})
+  </insert>
+  
+  <select id="selectPid" resultType="String" parameterType="com.manager.entity.SaleHistory">
+  select HID from SALEHISTORY where YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} and TYPE=#{type,jdbcType=INTEGER}
+  </select>
+  <select id="saleYearList" resultMap="budgetlist" parameterType="com.manager.entity.BuyOrder">
+  SELECT
+	salehistory.TIME,
+	SUM(PSCONN.COUNT*PRODUCT.SALEMONEY)as MONEY
+FROM
+	PSCONN,
+	PRODUCT,
+	SALEHISTORY
+WHERE
+	(
+		PSCONN.HID = SALEHISTORY.HID
+		and PSCONN.PID = PRODUCT.PID
+	)
+and YEAR=#{year,jdbcType=VARCHAR} and Type=0
+GROUP BY
+	salehistory.TIME;
+  </select>
+  <select id="saleTimeList" resultMap="budgetlist" parameterType="com.manager.entity.BuyOrder">
+  SELECT
+	PRODUCT.NAME,
+	(PSCONN.COUNT*PRODUCT.SALEMONEY)as MONEY
+FROM
+	PSCONN,
+	PRODUCT,
+	SALEHISTORY
+WHERE
+	(
+		PSCONN.HID = SALEHISTORY.HID
+		and PSCONN.PID = PRODUCT.PID
+	)
+and YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} and Type=0
+
+  
+  </select>
+ <insert id="addProduct" parameterType="com.manager.entity.Product" >
+    insert into PRODUCT ( PID, NAME, SALEMONEY,COST
+      )
+    values ( #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},  #{salemoney,jdbcType=FLOAT},#{cost,jdbcType=FLOAT}
+   )
+  </insert>
+  <select id="selectTotal"  resultType="int" parameterType="com.manager.entity.QueryProduct">
+  	select count(PID)
+  	from PRODUCT
+ 
+  </select>
+  <select id="productList" resultMap="BaseResultMap" parameterType="com.manager.entity.QueryProduct">
+    select 
+    <include refid="Base_Column_List" />
+    from PRODUCT where 1=1 order by PID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+  <select id="selectTime" resultMap="timeMap">
+  select YEAR,TIME from SALEHISTORY
+  where TYPE=1 
+  </select>
+  <select id="selectBudgetTotal" resultType="int" parameterType="com.manager.entity.BuyOrder">
+  	select count(PSCONN.PID)
+  	from SALEHISTORY,PSCONN where (SALEHISTORY.HID=PSCONN.HID) and
+  	type=1 and year=#{year,jdbcType=VARCHAR} and time=#{time,jdbcType=VARCHAR}
+  </select>
+  <select id="budgetList" resultMap="budgetlist" parameterType="com.manager.entity.BuyOrder">
+  select PSCONN.PID,YEAR,TIME,NAME,COST,MONEY,COUNT 
+  from SALEHISTORY,PRODUCT,PSCONN
+  where SALEHISTORY.HID=PSCONN.HID and PSCONN.PID=PRODUCT.PID and SALEHISTORY.TYPE=1 and SALEHISTORY.YEAR=#{year,jdbcType=VARCHAR} and SALEHISTORY.TIME=#{time,jdbcType=VARCHAR}
+  order by PSCONN.PID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+</mapper>

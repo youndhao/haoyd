@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manager.mapping.BuyMapper" >
+ 
+  <resultMap id="BuyOrderResultMap" type="com.manager.entity.BuyOrderList" >
+    <result column="BID" property="bid" jdbcType="VARCHAR" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="VARCHAR" />
+    <result column="ISPASS" property="isPass" jdbcType="INTEGER" />
+    <result column="ADVICE" property="advice" jdbcType="VARCHAR" />
+  </resultMap> 
+  <resultMap id="BaseResultMap" type="com.manager.entity.Material" >
+    <id column="MID" property="mid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="COST" property="cost" jdbcType="FLOAT" />
+  </resultMap>
+  <resultMap type="com.manager.entity.Time" id="timeMap">
+  	<result column="YEAR" property="year" jdbcType="VARCHAR"/>
+  	<result column="TIME" property="time" jdbcType="VARCHAR"/>
+  	<result column="FORMATTIME" property="formattime" jdbcType="VARCHAR"/>
+  </resultMap>
+  <resultMap type="com.manager.entity.BuyMaterialList" id="buyMaterialList">
+  	<result column="MID" property="mid" jdbcType="VARCHAR"/>
+  	<result column="YEAR" property="year" jdbcType="VARCHAR"/>
+  	<result column="TIME" property="time" jdbcType="VARCHAR"/>
+  	<result column="NAME" property="name" jdbcType="VARCHAR"/>
+  	<result column="COST" property="cost" jdbcType="FLOAT"/>
+  	<result column="COUNT" property="count" jdbcType="INTEGER"/>
+  	<result column="ADRESS" property="adress" jdbcType="VARCHAR"/>
+  	<result column="MONEY" property="money" jdbcType="FLOAT"/>
+  	<result column="STATE" property="state" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MID, NAME,COST
+  </sql>
+
+    <insert id="addMaterial" parameterType="com.manager.entity.Material" >
+    insert into MATERIAL ( MID, NAME,COST
+      )
+    values ( #{mid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{cost,jdbcType=FLOAT}
+   )
+  </insert>
+  <select id="orderList" resultMap="BuyOrderResultMap" parameterType="com.manager.entity.BuyOrder">
+  select BID,YEAR,TIME,ISPASS,ADVICE 
+  from BUYMATERIAL
+  where 1=1 order by BID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+ <select id="selectOrderTotal" resultType="int" parameterType="com.manager.entity.BuyOrder">
+  select count(BID)
+  from BUYMATERIAL
+  </select>
+   <select id="selectTotal"  resultType="int" parameterType="com.manager.entity.QueryMaterial">
+  	select count(MID)
+  	from MATERIAL
+ 
+  </select>
+  <select id="selectMaterialTotal" resultType="int" parameterType="com.manager.entity.BuyOrder">
+  select count(BMCONN.MID)
+  from BUYMATERIAL,BMCONN 
+   where BUYMATERIAL.BID=BMCONN.BID 
+   and year=#{year,jdbcType=VARCHAR}
+   and time=#{time,jdbcType=VARCHAR}
+  </select>
+  <select id="buyMaterialList" resultMap="buyMaterialList" parameterType="com.manager.entity.BuyOrder">
+  select BMCONN.MID,YEAR,TIME,COST,COUNT,MONEY,ADDRESS,NAME,STATE
+  from BMCONN,MATERIAL,BUYMATERIAL
+  where BMCONN.MID=MATERIAL.MID and BMCONN.BID=BUYMATERIAL.BID 
+  and YEAR=#{year,jdbcType=VARCHAR} and time=#{time,jdbcType=VARCHAR}
+  order by BMCONN.BID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+  <select id="selectMaterials" resultMap="BaseResultMap">
+  select 
+   <include refid="Base_Column_List" />
+   from MATERIAL
+  </select>
+  <select id="materialList" resultMap="BaseResultMap" parameterType="com.manager.entity.QueryMaterial">
+    select 
+    <include refid="Base_Column_List" />
+    from MATERIAL where 1=1 order by MID limit #{page.startRow,jdbcType=INTEGER},10
+  </select> 
+  <select id="check"  resultType="int" parameterType="com.manager.entity.SaleCheckentity">
+  	select count(BID)
+  	from BUYMATERIAL where YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} 
+  </select>
+  
+    <select id="selectBid" resultType="String" parameterType="com.manager.entity.BuyMaterial">
+  select BID from BUYMATERIAL where YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} 
+  </select>
+  <insert id="saveBMconn" parameterType="com.manager.entity.BuyMaterial">
+  insert into 
+  BMCONN (MID,BID,COUNT,ADDRESS)
+  values(#{name,jdbcType=VARCHAR},#{bid,jdbcType=VARCHAR},#{count,jdbcType=INTEGER},#{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="saveBuyMaterial" parameterType="com.manager.entity.BuyMaterial">
+  insert into
+   BUYMATERIAL (BID,YEAR,TIME)
+  
+  values(#{bid,jdbcType=VARCHAR},#{year,jdbcType=VARCHAR},#{time,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectTime" resultMap="timeMap" >
+  select YEAR,TIME from BUYMATERIAL 
+  </select>
+</mapper>

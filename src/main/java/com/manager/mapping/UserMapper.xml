@@ -21,4 +21,46 @@
     where USERNAME = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
  
 </select>
+<insert id="insert" parameterType="com.manager.entity.User">
+ insert into User (USERNAME, PASSWORD, FULLNAME, EMAIL, ADDRESS, CITY)
+ values (#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR})
+</insert>
+<select id="selectTotal"  resultType="int" parameterType="com.manager.entity.InfoQueryEntity">
+  	select count(ID)
+  	from USER
+  	where FULLNAME=#{fullName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectinfo" resultMap="BaseResultMap" parameterType="com.manager.entity.InfoQueryEntity">
+    select 
+    <include refid="Base_Column_List" />
+    from USER
+    where FULLNAME=#{fullName,jdbcType=VARCHAR}  order by ID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+  <update id="changepass" parameterType="com.manager.entity.UserPass">
+  update USER set PASSWORD=#{password,jdbcType=VARCHAR}
+  where USERNAME=#{userName,jdbcType=VARCHAR}
+  </update>
+  <select id="allUserList" resultMap="BaseResultMap" parameterType="com.manager.entity.InfoQueryEntity">
+    select 
+    <include refid="Base_Column_List" />
+    from USER where 1=1 order by ID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+  <select id="selectTotalUser"  resultType="int" parameterType="com.manager.entity.InfoQueryEntity">
+  	select count(ID)
+  	from USER
+  </select>
+   <delete id="deleteuser" parameterType="java.lang.Integer" >
+   delete from USER where id in
+		<foreach collection="array" item="id2" open="(" separator=","
+			close=")" index="index">
+			#{id2}
+		</foreach>
+  </delete> 
+   
+  <update id="updateuser" parameterType="com.manager.entity.User">
+  update USER set FULLNAME=#{fullName,jdbcType=VARCHAR}, USERNAME=#{userName,jdbcType=VARCHAR}, 
+  ROLE=#{role,jdbcType=VARCHAR}, CITY=#{city,jdbcType=VARCHAR}, ADDRESS=#{address,jdbcType=VARCHAR}, 
+  EMAIL=#{email,jdbcType=VARCHAR} where ID=#{id,jdbcType=VARCHAR}
+  </update>
 </mapper>

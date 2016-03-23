@@ -34,15 +34,15 @@
 }
 #BBBCCC{
     height:auto;
-    width:260px;
+    width:20%;
     margin:00px;/*设置元素跟其他元素的距离为20像素*/
     float:left;/*设置浮动，实现多列效果，div+Css布局中很重要的*/
     background:#414956;
 }
 #BBBDDD{
     height:555px;
-    width:auto;
-    margin:50px;/*设置元素跟其他元素的距离为20像素*/
+    width:75%;
+    margin:30px;/*设置元素跟其他元素的距离为20像素*/
     float:left;/*设置浮动，实现多列效果，div+Css布局中很重要的*/
 }
 	</style>
@@ -70,7 +70,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						
 						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎您   ${user.fullName}<strong class="caret"></strong></a>
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">企业产品管理系统欢迎您   ${user.fullName}<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 							<!-- 	<li>
 									<a href="#">-查看个人信息</a>
@@ -116,7 +116,7 @@
 			</ul>
 		</li>
 		<li>
-			<div class="link"><i class="fa fa-code"></i>销售预算<i class="fa fa-chevron-down"></i></div>
+			<div class="link"><i class="fa fa-code"></i>销售管理<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 			<c:if test="${user.role==1||user.role>2}">
 			    <li><a href="${base_path}/rest/sale/addsalehistory"><b>录入往年销售情况</b></a></li>
@@ -144,8 +144,8 @@
             <c:if test="${user.role>2}">
 		<li><div class="link"><i class="fa fa-globe"></i>领导审批<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
-				 <li><a href="${base_path}/rest/manage/managesalebudget"> <b>销售预算审批</b></a></li>
-                <li><a href="${base_path}/rest/manage/managebuyorder"> <b>采购清单审批</b></a></li>
+				 <li><a href="${base_path}/rest/manage/managesalebudget"> <b>销售预算审请</b></a></li>
+                <li><a href="${base_path}/rest/manage/managebuyorder"> <b>采购清单审核</b></a></li>
 				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
 				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
 			</ul>
@@ -162,7 +162,7 @@
 		</li>
 		 </c:if>  
 		 <li>
-			<div class="link"><i class="fa fa-mobile"></i>产品采购<i class="fa fa-chevron-down"></i></div>
+			<div class="link"><i class="fa fa-mobile"></i>库存管理<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 				 <li><a href="${base_path}/rest/buy/buymaterial"> <b>产品采购预算</b> </a></li>
                 <li><a href="${base_path}/rest/buy/BuyMaterialList"> <b>产品采购清单</b></a></li>
@@ -190,7 +190,7 @@
 		</li>
 		 
 	</ul>
-          <div class="menu-footer"> @Youndhao</div>
+          <div class="menu-footer">copyright-2016 @Youndhao</div>
         </div>
       </nav>
 				</div>

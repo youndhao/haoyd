@@ -4,7 +4,7 @@ $(function() {
 
         // 处理子菜单点击
         me.handleSubMenuClick = function() {
-            $('#page-sidebar-menu li a').click(function(e) {
+            $('#accordion li a').click(function(e) {
                 e.preventDefault();
                 var url = this.href;
                 if(url.indexOf("#") > 0 )

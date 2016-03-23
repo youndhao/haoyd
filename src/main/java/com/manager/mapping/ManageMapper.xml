@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manager.mapping.ManageMapper" >
+<resultMap type="com.manager.entity.BudgetList" id="baseMap">
+<result column="HID" property="hid" jdbcType="VARCHAR"/>
+<result column="YEAR" property="year" jdbcType="VARCHAR"/>
+<result column="TIME" property="time" jdbcType="VARCHAR"/>
+<result column="ADVICE" property="advice" jdbcType="VARCHAR"/>
+<result column="ISPASS" property="isPass" jdbcType="INTEGER"/>
+</resultMap>
+
+
+<update id="updateSale" parameterType="com.manager.entity.BuyOrder">
+update SALEHISTORY set ISPASS=#{ispass,jdbcType=INTEGER},advice=#{advice,jdbcType=VARCHAR}
+where HID=#{bid,jdbcType=VARCHAR}
+</update>
+<update id="updateOrder" parameterType="com.manager.entity.BuyOrder">
+update BUYMATERIAL set ISPASS=#{ispass,jdbcType=INTEGER},advice=#{advice,jdbcType=VARCHAR}
+where BID=#{bid,jdbcType=VARCHAR}
+</update>
+<select id="selectTotal" resultType="int" parameterType="com.manager.entity.BuyOrder">
+select count(HID)
+from SALEHISTORY 
+where type=1
+</select>
+<select id="budgetList" resultMap="baseMap" parameterType="com.manager.entity.BuyOrder">
+select HID,YEAR,TIME,ADVICE,ISPASS 
+from  SALEHISTORY 
+where type=1 
+order by HID limit #{page.startRow,jdbcType=INTEGER},10
+</select>
+
+</mapper>

@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<label class="control-label visible-ie8 visible-ie9">地址</label>
 			<div class="input-icon">
 				<i class="fa fa-check"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="地址" name="adress"/>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="地址" name="address"/>
 			</div>
 		</div>
 		<div class="form-group">
