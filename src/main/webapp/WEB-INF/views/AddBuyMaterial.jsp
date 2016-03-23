@@ -50,43 +50,7 @@
 								<td><b>采购厂商</b></td>
 								<td><b>采购数量</b></td>
 							</tr>
-	<!-- 							<tr id="{0}">
-			<td style="text-align: center;">
-				---
-			</td>
-			<td style="text-align: center;">---</td>
-			<td>
-				<select
-					id="year"
-					name="year">
-					<option value="s" selected="selected">---请选择---</option>
-					<option value="2016">2016</option>
-					<option value="2015">2015</option>
-					<option value="2014">2014</option>
-					<option value="2013">2013</option>
-					<option value="2012">2012</option>
-					<option value="2011">2011</option>
-					<option value="2010">2010</option>
-					<option value="2009">2009</option>
-					<option value="2008">2008</option>
-					<option value="2007">2007</option>
-					<option value="2006">2006</option>
-					
-					</select>
-			</td>
-			<td>
-				 	<select 
-					id="time"
-					name="time">
-					<option value="2" selected="selected">---请选择---</option>
-					<option value="1">第一季度</option>
-					<option value="2">第二季度</option>
-					<option value="3">第三季度</option>
-					<option value="4">第四季度</option>
-					</select>
-			</td>
-			<td>请在下面选择</td>
-			<td>请填入数字</td> -->
+	
 						 	<tr id="appendBefore">
 								<td colspan="7" align="center"><input type="button"
 									id="addRecord" class="btn btn-default btn-sm " value="添加一行" />
