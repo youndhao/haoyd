@@ -111,7 +111,7 @@
 			<div class="link"><i class="fa fa-paint-brush"></i>个人信息<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 			    <li><a href="${base_path}/rest/user/selectinfo"><b>查看个人信息</b></a></li>
-                <li><a href="${base_path}/rest/user/changepassword"><b>用户密码修改</b></a></li>
+                <li><a href="${base_path}/rest/user/changepassword"><b>修改用户密码</b></a></li>
 				
 			</ul>
 		</li>
@@ -136,8 +136,6 @@
                 <li><a href="${base_path}/rest/buy/BuyMaterialList"> <b>产品采购清单</b></a></li>
                 <li><a href="${base_path}/rest/buy/material"> <b>录入产品库</b> </a></li>
                 <li><a href="${base_path}/rest/buy/materialstate"> <b>采购流程追踪</b> </a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
 			</ul>
 		</li>
 		</c:if>
@@ -146,8 +144,6 @@
 			<ul class="submenu">
 				 <li><a href="${base_path}/rest/manage/managesalebudget"> <b>销售预算审请</b></a></li>
                 <li><a href="${base_path}/rest/manage/managebuyorder"> <b>采购清单审核</b></a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
 			</ul>
 		</li>
 		 </c:if>
@@ -156,20 +152,15 @@
 			<ul class="submenu">
 				 <li><a href="${base_path}/rest/user/userlist"> <b>查看用户</b></a></li>
                 <li><a href="${base_path}/rest/user/editUser"> <b>角色管理</b></a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
 			</ul>
 		</li>
 		 </c:if>  
 		 <li>
 			<div class="link"><i class="fa fa-mobile"></i>库存管理<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
-				 <li><a href="${base_path}/rest/buy/buymaterial"> <b>产品采购预算</b> </a></li>
-                <li><a href="${base_path}/rest/buy/BuyMaterialList"> <b>产品采购清单</b></a></li>
-                <li><a href="${base_path}/rest/buy/material"> <b>录入产品库</b> </a></li>
-                <li><a href="${base_path}/rest/buy/materialstate"> <b>采购流程追踪</b> </a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
+                <li><a href="${base_path}/rest/stock/selectstock"> <b>商品信息查询</b> </a></li>
+                <li><a href="${base_path}/rest/stock/stocklist"> <b>商品入库管理</b> </a></li>
+                <li><a href="${base_path}/rest/stock/editstock"> <b>商品信息修改</b> </a></li>
 			</ul>
 		</li>
 		<li>

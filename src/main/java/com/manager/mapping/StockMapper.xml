@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manager.mapping.StockMapper">
+<resultMap id="BaseResultMap" type="com.manager.entity.StockEntity" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PRODUCTNUMBER" property="productNumber" jdbcType="VARCHAR" />
+    <result column="PRODUCTNAME" property="productName" jdbcType="VARCHAR" />
+    <result column="COST" property="cost" jdbcType="FLOAT" />
+    <result column="RETAIL" property="retail" jdbcType="FLOAT" />
+    <result column="CATEGORY" property="category" jdbcType="VARCHAR" />
+    <result column="PRIVIDER" property="privider" jdbcType="VARCHAR" />
+    <result column="STOCKAMOUNT" property="stockAmount" jdbcType="VARCHAR" />
+  </resultMap>
+<sql id="Base_Column_List" >
+    ID, PRODUCTNUMBER, PRODUCTNAME, COST, RETAIL, CATEGORY, PRIVIDER, STOCKAMOUNT
+  </sql>
+
+<insert id="insertstock" parameterType="com.manager.entity.StockEntity">
+ insert into stock (PRODUCTNUMBER, PRODUCTNAME, COST, RETAIL, CATEGORY, PRIVIDER, STOCKAMOUNT)
+ values (#{productNumber,jdbcType=VARCHAR},#{productName,jdbcType=VARCHAR},#{cost,jdbcType=FLOAT},
+        #{retail,jdbcType=FLOAT},#{category,jdbcType=VARCHAR},#{privider,jdbcType=VARCHAR},
+        #{stockAmount,jdbcType=VARCHAR})
+</insert>
+<select id="selectTotal"  resultType="int" parameterType="com.manager.entity.InfoQueryEntity">
+  	select count(ID)
+  	from STOCK
+  	where PRODUCTNAME=#{productName,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="allStockList" resultMap="BaseResultMap" parameterType="com.manager.entity.InfoStockEntity">
+    select 
+    <include refid="Base_Column_List" />
+    from STOCK where 1=1 
+    <if test="productName !=null and  productName !=''">
+   and  PRODUCTNAME=#{productName,jdbcType=VARCHAR}
+    </if>
+    order by ID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+  <select id="selectTotalStock"  resultType="int" parameterType="com.manager.entity.InfoStockEntity">
+  	select count(ID)
+  	from STOCK
+  </select>
+   <delete id="deletestock" parameterType="java.lang.Integer" >
+   delete from STOCK where id in
+		<foreach collection="array" item="id2" open="(" separator=","
+			close=")" index="index">
+			#{id2}
+		</foreach>
+  </delete> 
+   
+  <update id="updatestock" parameterType="com.manager.entity.StockEntity">
+  update STOCK set PRODUCTNUMBER=#{productNumber,jdbcType=VARCHAR}, PRODUCTNAME=#{productName,jdbcType=VARCHAR}, 
+  COST=#{cost,jdbcType=FLOAT}, RETAIL=#{retail,jdbcType=FLOAT}, CATEGORY=#{category,jdbcType=VARCHAR}, 
+  PRIVIDER=#{privider,jdbcType=VARCHAR}, STOCKAMOUNT=#{stockAmount,jdbcType=VARCHAR} where ID=#{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

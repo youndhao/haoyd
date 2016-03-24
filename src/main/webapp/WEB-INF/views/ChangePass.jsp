@@ -72,14 +72,14 @@
 	<form style="width:400px;" >
   <div class="form-group">
     <label for="exampleInputEmail1">新密码</label>
-    <input type="password" class="form-control" id="password" placeholder="password">
+    <input type="password" class="form-control" id="password" placeholder="请输入新密码">
   </div>
   <div class="form-group" >
     <label for="exampleInputPassword1">重复新密码</label>
-    <input type="password" class="form-control" id="password1" placeholder="Password">
+    <input type="password" class="form-control" id="password1" placeholder="请确认新密码">
   </div>
 
-  <input type="button"  class="btn btn-default" style="float: right" onclick="sss.add()" value="Submit">
+  <input type="button"  class="btn btn-default" style="float: right" onclick="sss.add()" value="确认修改">
 </form>
 
 	

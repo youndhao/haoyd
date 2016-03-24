@@ -24,26 +24,27 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					用户管理 <span class="divider">/</span>
+					库存管理<span class="divider">/</span>
 					</li>
 			<li class="active">
-					编辑用户信息
+					编辑库存信息
 					</li>
 	</ul>
 	<!-- -->
 	<BR>
 
-	<table id="ReportGrid"  title="人员组织管理">
+	<table id="ReportGrid"  title="库存信息管理">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
 				<th data-options="field:'id',width:30">id</th>
-				<th data-options="field:'fullName',align:'center',width:100">用户名</th>
-				<th data-options="field:'userName',align:'center',width:100">账户</th>
-				<th data-options="field:'email',align:'center',width:100">邮箱</th>
-				<th data-options="field:'city',align:'center',width:100">城市</th>
-				<th data-options="field:'address',align:'center',width:150">住址</th>
-				<th data-options="field:'role',width:100 , align:'center',formatter:ResourceApp.operatorFmt2">角色</th>
+				<th data-options="field:'productNumber',align:'center',width:100">商品编号</th>
+				<th data-options="field:'productName',align:'center',width:100">商品名称</th>
+				<th data-options="field:'cost',align:'center',width:100">商品进价</th>
+				<th data-options="field:'retail',align:'center',width:100">商品零售价</th>
+				<th data-options="field:'category',align:'center',width:150">商品类别</th>
+				<th data-options="field:'privider',align:'center',width:150">商品供应商</th>
+				<th data-options="field:'stockAmount',align:'center',width:150">商品库存量</th>
 				<th data-options="field:'stu',width:100 ,align:'center',formatter:ResourceApp.operatorFmt ">操作</th>
 				
 			</tr>
@@ -56,30 +57,34 @@
 		<input type="text" disabled="disabled"  id="reportDialogMsg" style="width:100%;height:32px" >
 		</div>
 		<div style="margin-bottom:20px">
-			<div>用户名:
-			<input id="fullName2" type="text"   style="width:100%;height:32px"></div>
+			<div>商品编号:
+			<input id="productNumber2" type="text"   style="width:100%;height:32px"></div>
 		</div>
 		<div style="margin-bottom:20px">
-			<div>账户名:</div>
-			<input id="userName2"  style="width:100%;height:32px">
+			<div>商品名称:
+			<input id="productName2" type="text"   style="width:100%;height:32px"></div>
 		</div>
 		<div style="margin-bottom:20px">
-			<div>Email:</div>
-			<input  id="email2" style="width:100%;height:32px">
+			<div>商品进价:</div>
+			<input id="cost2"  style="width:100%;height:32px">
 		</div>
 		<div style="margin-bottom:20px">
-			<div>住址:</div>
-			<input id="address2"   style="width:100%;height:32px">
+			<div>商品零售价:</div>
+			<input  id="retail2" style="width:100%;height:32px">
 		</div>
 		<div style="margin-bottom:20px">
-			<div>城市:</div>
-			<input id="city2"   style="width:100%;height:32px">
+			<div>商品类别:</div>
+			<input id="category2"   style="width:100%;height:32px">
 		</div>
 		<div style="margin-bottom:20px">
-			<div>角色:</div>
-			<select id="role2" style="width:100%;height:32px"><option value="0" >员工</option>
-			<option value="1">财务人员</option><option value="2">采购人员</option><option value="3">领导</option><option value="4">管理员</option></select></div>
+			<div>商品供应商:</div>
+			<input id="privider2"   style="width:100%;height:32px">
 		</div>
+		<div style="margin-bottom:20px">
+			<div>商品库存量:</div>
+			<input id="stockAmount2"   style="width:100%;height:32px">
+		</div>
+		
 	<div id="reportDialogBtns">
 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="ResourceApp.updateReport()" data-options="iconCls:'icon-ok'">更新</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="ResourceApp.closeResourceDialog()" data-options="iconCls:'icon-close'">关闭</a>
@@ -126,12 +131,13 @@
 				// 获取分页中所选行，并将行信息填入修改的表单中
 				_row1 = EasyuiUtil.Grid.getGridRowByIndex(_gridId, _rowindex);
 				$("#mes").hide();
-				$("#fullName2").val(_row1.fullName);
-				$("#userName2").val(_row1.userName);
-				$("#role2").val(_row1.role);
-				$("#city2").val(_row1.city);
-				$("#address2").val(_row1.address);
-				$("#email2").val(_row1.email);
+				$("#productNumber2").val(_row1.productNumber);
+				$("#productName2").val(_row1.productName);
+				$("#cost2").val(_row1.cost);
+				$("#retail2").val(_row1.retail);
+				$("#category2").val(_row1.category);
+				$("#privider2").val(_row1.privider);
+				$("#stockAmount2").val(_row1.stockAmount);
 				$('#reportDialog').dialog({
 					title : "编辑人员信息"
 				}).dialog('open');
@@ -145,54 +151,63 @@
 		
 			// 编辑信息
 			ResourceApp.updateReport = function() {
-				var _fullName1 = $.trim($("#fullName2").val());
-				var _userName1 = $.trim($("#userName2").val());
-				var _role1 = $.trim($("#role2").val());
-				var _email1 = $.trim($("#email2").val());
-				var _city1 = $.trim($("#city2").val());
-				var _address1 = $.trim($("#address2").val());
-				if (_fullName1 == null || _fullName1 == "") {
+				var _productNumber1 = $.trim($("#productNumber2").val());
+				var _productName1 = $.trim($("#productName2").val());
+				var _cost1 = $.trim($("#cost2").val());
+				var _retail1 = $.trim($("#retail2").val());
+				var _category1 = $.trim($("#category2").val());
+				var _privider1 = $.trim($("#privider2").val());
+				var _stockAmount1 = $.trim($("#stockAmount2").val());
+				
+				if (_productNumber1 == null || _productNumber1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val('请输入用户名');
+					$("#reportDialogMsg").val('请输入商品编号');
 					return;
 				}
-				if (_userName1 == null || _userName1 == "") {
+				if (_productName1 == null || _productName1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入账号");
+					$("#reportDialogMsg").val("请输入商品名称");
 					return;
 				}
-				if (_role1 == null || _role1 == "") {
+				if (_cost1 == null || _cost1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入用户角色 ");
+					$("#reportDialogMsg").val("请输入商品进价");
 					return;
 				}
-				if (_email1 == null || _email1 == "") {
+				if (_retail1 == null || _retail1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入邮箱 ");
+					$("#reportDialogMsg").val("请输入商品零售价 ");
 					return;
 				}
-				if (_city1== null || _city1 == "") {
+				if (_category1== null || _category1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入用户所在城市 ");
+					$("#reportDialogMsg").val("请输入商品类别 ");
 					return;
 				}
-				if (_address1== null || _address1 == "") {
+				if (_privider1== null || _privider1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入用户地址 ");
+					$("#reportDialogMsg").val("请输入供货商 ");
+					return;
+				}
+				
+				if (_stockAmount1== null || _stockAmount1 == "") {
+					$("#mes").show();
+					$("#reportDialogMsg").val("请输入商品库存量 ");
 					return;
 				}
 				$("#mes").show();// ???
 				var _data = {
 					"id" : _row1.id,
-					"address" : _address1,
-					"city" : _city1,
-					"email" : _email1,
-					"role" : _role1,
-					"userName" : _userName1,
-					"fullName" : _fullName1
+					"productNumber" : _productNumber1,
+					"productName" : _productName1,
+					"cost" : _cost1,
+					"retail" : _retail1,
+					"category" : _category1,
+					"privider" : _privider1,
+					"stockAmount" : _stockAmount1
 				};
 				EasyuiUtil.Messager.showWaiting();
-				$.post(basePath + "/rest/user/updateuser", _data, function(r) {
+				$.post(basePath + "/rest/stock/updatestock", _data, function(r) {
 					if (r.result) {
 						EasyuiUtil.Messager.closeWaiting();
 						ResourceApp.closeResourceDialog();
@@ -203,13 +218,14 @@
 						ResourceApp.closeResourceDialog();
 						ResourceApp.reloadData();
 					}
-				}, "json");
-			}
+				}, "json");	
+		}
+		
 		 
 			window.ResourceApp = ResourceApp;
 			$(function() {
 				EasyuiUtil.Grid.initGrid(_gridId, {
-					url : basePath + "/rest/user/alluserlist",
+					url : basePath + "/rest/stock/allstocklist",
 					/* toolbarConfig : {
 						add : {
 							text : "新增人员",
