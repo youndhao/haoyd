@@ -6,6 +6,10 @@ public class Material {
 	private String name;
 	
 	private float cost;
+	
+	private Integer mount;
+	
+	private float totalmoney;
 
 	public String getMid() {
 		return mid;
@@ -31,5 +35,21 @@ public class Material {
 		this.cost = cost;
 	}
 
+	public Integer getMount() {
+		return mount;
+	}
+
+	public void setMount(Integer mount) {
+		this.mount = mount;
+	}
+
+	public float getTotalmoney() {
+		return totalmoney;
+	}
+
+	public void setTotalmoney(float totalmoney) {
+		this.totalmoney = totalmoney;
+	}
+   
 
 }

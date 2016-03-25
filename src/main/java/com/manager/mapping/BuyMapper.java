@@ -39,4 +39,6 @@ public interface BuyMapper {
 
 	List<BuyMaterialList> buyMaterialList(BuyOrder order);
 
+	int editState(BuyMaterialList buyMaterialList);
+
 }

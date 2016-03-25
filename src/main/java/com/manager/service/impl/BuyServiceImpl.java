@@ -112,6 +112,11 @@ public class BuyServiceImpl implements IBuyService {
 		return Pair.with(total, list);
 	}
 
+	@Override
+	public int editState(BuyMaterialList buyMaterialList) {
+		return buyMapper.editState(buyMaterialList);
+	}
+
 	
 
 }

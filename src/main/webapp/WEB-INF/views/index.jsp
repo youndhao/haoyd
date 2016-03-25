@@ -47,7 +47,7 @@
 }
 	</style>
    </head>
-  <body>
+  <body onload="startTime()">
 
     <div class="container-fluid">
 	<div class="row">
@@ -65,24 +65,21 @@
 						<li class="active">
 							<a href="#">Link</a>
 						</li>
-					</ul>
-					
-					<ul class="nav navbar-nav navbar-right">
 						
+					</ul>
+					<ul class="nav navbar-nav navbar-left">
+					<li >
+					   <div ></div>
+					   <div id="txt1" align="center" style="color:white; font-size:18px"></div>
+					</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+					
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">企业产品管理系统欢迎您   ${user.fullName}<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-							<!-- 	<li>
-									<a href="#">-查看个人信息</a>
-								</li>
-								<li>
-									<a href="#">-修改密码</a>
-								</li>
-								<li>
-									<a href="#">-退出系统</a>
-								</li> -->
-								<li class="divider">
-								</li>
+							
+								
 								<li>
 									<a href="${base_path}/rest/user/logout">退出系统</a>
 								</li>
@@ -108,7 +105,7 @@
 			
 		</li> 
 		<li>
-			<div class="link"><i class="fa fa-paint-brush"></i>个人信息<i class="fa fa-chevron-down"></i></div>
+			<div class="link"><i class="fa fa-paint-brush"></i>个人中心<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 			    <li><a href="${base_path}/rest/user/selectinfo"><b>查看个人信息</b></a></li>
                 <li><a href="${base_path}/rest/user/changepassword"><b>修改用户密码</b></a></li>
@@ -196,6 +193,16 @@
     <script src="${js_path}/myscript.js"></script>
   <script type="text/javascript" src="${js_path}/highcharts/highcharts.src.js"></script>
   <script type="text/javascript" src="${js_path}/highcharts/exporting.js"></script>
+<script type="text/javascript">
+function startTime()
+{
 
-  </body>
+document.getElementById('txt1').innerHTML=new Date()
+t=setTimeout('startTime()',500)
+}
+
+
+</script>
+
+  </body >
 </html>

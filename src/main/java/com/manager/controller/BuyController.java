@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
+
 import com.manager.entity.BuyMaterialList;
 import com.manager.entity.BuyOrder;
 import com.manager.entity.BuyOrderList;
@@ -113,6 +114,20 @@ public class BuyController {
 				 map.put("message", "保存失败");
 			 }
 			return map;
+	}
+	@RequestMapping(value="/buyeditstate")
+	@ResponseBody
+	public String buyEditState(BuyMaterialList buyMaterialList){
+		int count = ibuyService.editState(buyMaterialList);
+		if(count>0){
+			
+			return Tools.ToResult(true, "修改成功");
+			
+		}else{
+			
+			return Tools.ToResult(false, "修改失败");
+			
+		}
 	}
 	
 

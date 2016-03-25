@@ -32,6 +32,8 @@ public interface IBuyService {
 	List<Time> selectTime();
 
 	Pair<Integer, List<BuyMaterialList>> buyMaterialList(BuyOrder order);
+
+	int editState(BuyMaterialList buyMaterialList);
 	
 
 }

@@ -3,6 +3,7 @@ package com.manager.entity;
 import com.manager.util.Page;
 
 public class InfoStockEntity {
+	private Integer id;
 	private String productNumber;
 	private String productName;
 	private float cost;
@@ -11,6 +12,13 @@ public class InfoStockEntity {
 	private String privider;
 	private String stockAmount;
 	private Page page;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getProductNumber() {
 		return productNumber;
 	}

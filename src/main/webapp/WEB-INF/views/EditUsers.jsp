@@ -10,7 +10,6 @@
  <link
 	href="${js_path}/jquery-easyui/1.4.3/themes/metro/easyui.css"
 	rel="stylesheet" /> 
-	<script type="text/javascript" src="${js_path}/jquery-1.9.1.min.js"></script>
 <script type="text/javascript"
 	src="${js_path}/jquery-easyui/1.4.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
@@ -27,23 +26,24 @@
 					用户管理 <span class="divider">/</span>
 					</li>
 			<li class="active">
-					查看用户
+					角色管理
 					</li>
 	</ul>
 	<!-- -->
 	<BR>
 
-	<table id="ReportGrid"  title="人员组织信息">
+	<table id="ReportGrid"  title="报告信息">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'id',align:'center',width:30">id</th>
+				<th data-options="field:'id',width:30">id</th>
 				<th data-options="field:'fullName',align:'center',width:100">用户名</th>
 				<th data-options="field:'userName',align:'center',width:100">账户</th>
 				<th data-options="field:'email',align:'center',width:100">邮箱</th>
 				<th data-options="field:'city',align:'center',width:100">城市</th>
 				<th data-options="field:'address',align:'center',width:150">住址</th>
-				<th data-options="field:'role',align:'center',width:100 , formatter:ResourceApp.operatorFmt2">角色</th>
+				<th data-options="field:'role',width:100 , align:'center',formatter:ResourceApp.operatorFmt2">角色</th>
+				<th data-options="field:'stu',width:100 ,align:'center',formatter:ResourceApp.operatorFmt ">操作</th>
 				
 			</tr>
 		</thead>
@@ -64,7 +64,7 @@
 		</div>
 		<div style="margin-bottom:20px">
 			<div>Email:</div>
-			<input  id="email2"   style="width:100%;height:32px">
+			<input  id="email2"  validType:'email'" style="width:100%;height:32px">
 		</div>
 		<div style="margin-bottom:20px">
 			<div>住址:</div>
@@ -75,16 +75,18 @@
 			<input id="city2"   style="width:100%;height:32px">
 		</div>
 		<div style="margin-bottom:20px">
-			<div>密码:</div>
-			<input id="password2" class="easyui-textbox" style="width:100%;height:32px">
+			<div>角色:</div>
+			<select id="role2" style="width:100%;height:32px"><option value="0" >员工</option>
+			<option value="1">财务人员</option><option value="2">采购人员</option><option value="3">领导</option><option value="4">管理员</option></select></div>
 		</div>
 	<div id="reportDialogBtns">
-		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="ResourceApp.save()" data-options="iconCls:'icon-ok'">保存</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="ResourceApp.updateReport()" data-options="iconCls:'icon-ok'">更新</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="ResourceApp.closeResourceDialog()" data-options="iconCls:'icon-close'">关闭</a>
 		
 	</div>
 	</div>
-		  <script type="text/javascript">
+
+	  <script type="text/javascript">
 	  (function(window, $) {
 			var _gridId = 'ReportGrid';
 			var ResourceApp = {};
@@ -116,85 +118,41 @@
 				return "<a href='#' class='grid-linkbutton' iconCls='icon-delete' plain='true' "
 						+ "onclick='ResourceApp.editReport(\"" + index + "\")'>编辑</a>";
 			};
-			// 根据信息查找
-			ResourceApp.searchData = function() {
-				var _TITLE = $.trim($('#_title').val());
-				var _TYPE = $.trim($('#_type').val());
-				var _CAL = $.trim($('#_cal').val());
-				var _USER = $.trim($('#_user').val());
-				var _COMMON = $.trim($('#_common').val());
-				ResourceApp.reloadData({
-					title : _TITLE,
-					type : _TYPE,
-					cal : _CAL,
-					userid : _USER,
-					common : _COMMON
-				});
-			};
-			// 添加人员
-			ResourceApp.addReport = function() {
+	
+			// 编辑报告
+			ResourceApp.editReport = function(_rowindex) {
+				$("#" + _gridId).datagrid("clearSelections");
+				// 获取分页中所选行，并将行信息填入修改的表单中
+				_row1 = EasyuiUtil.Grid.getGridRowByIndex(_gridId, _rowindex);
 				$("#mes").hide();
-				$("#fullName2").val('');
-				$("#userName2").val('');
-				$("#password2").val('');
-				$("#city2").val('');
-				$("#address2").val('');
-				$("#email2").val('');
+				$("#fullName2").val(_row1.fullName);
+				$("#userName2").val(_row1.userName);
+				$("#role2").val(_row1.role);
+				$("#city2").val(_row1.city);
+				$("#address2").val(_row1.address);
+				$("#email2").val(_row1.email);
 				$('#reportDialog').dialog({
-					title : "新增人员"
+					title : "编辑人员信息"
 				}).dialog('open');
 			};
-
-
-			// 删除多个报告
-			ResourceApp.deleteAllReport = function() {
-				var checked = $("#" + _gridId).datagrid("getChecked");
-				if (checked.length == 0) {
-					alert("请选中需要删除的数据");
-					return;
-				} else {
-					$("#reportSuccessMessager").hide();
-				}
-				var _RId = new Array();
-				for (var i = 0; i < checked.length; i++) {
-					_RId.push(checked[i].id);
-				}
-				EasyuiUtil.Messager.showConfirm('确定删除所选中的人员？', function(cr) {
-					if (cr) {
-						EasyuiUtil.Messager.showWaiting();
-						$.post(basePath + "/rest/user/deleteuser", {
-							id : _RId
-						}, function(result) {
-							EasyuiUtil.Messager.closeWaiting();
-							if (result.result) {
-								alert("数据已删除");
-								ResourceApp.closeResourceDialog();
-								ResourceApp.reloadData();
-							} else {
-								EasyuiUtil.Messager.showError(result.message);
-								ResourceApp.closeResourceDialog();
-							}
-						}, "json");
-					}
-				});
-			};
+			
 
 			// 关闭 弹出窗口
 			ResourceApp.closeResourceDialog = function() {
 				$("#reportDialog").dialog('close');
 			}
-			// 保存信息
-			ResourceApp.save = function() {
+		
+			// 编辑信息
+			ResourceApp.updateReport = function() {
 				var _fullName1 = $.trim($("#fullName2").val());
 				var _userName1 = $.trim($("#userName2").val());
-				var _password1 = $.trim($("#password2").val());
+				var _role1 = $.trim($("#role2").val());
+				var _email1 = $.trim($("#email2").val());
 				var _city1 = $.trim($("#city2").val());
 				var _address1 = $.trim($("#address2").val());
-				var _email1 = $.trim($("#email2").val());
-
 				if (_fullName1 == null || _fullName1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入用户名");
+					$("#reportDialogMsg").val('请输入用户名');
 					return;
 				}
 				if (_userName1 == null || _userName1 == "") {
@@ -202,9 +160,9 @@
 					$("#reportDialogMsg").val("请输入账号");
 					return;
 				}
-				if (_password1 == null || _password1 == "") {
+				if (_role1 == null || _role1 == "") {
 					$("#mes").show();
-					$("#reportDialogMsg").val("请输入用户密码 ");
+					$("#reportDialogMsg").val("请输入用户角色 ");
 					return;
 				}
 				if (_email1 == null || _email1 == "") {
@@ -222,42 +180,45 @@
 					$("#reportDialogMsg").val("请输入用户地址 ");
 					return;
 				}
-				$("#mes").hide();// ??
+				$("#mes").show();// ???
 				var _data = {
-						"address" : _address1,
-						"city" : _city1,
-						"email" : _email1,
-						"userName" : _userName1,
-						"fullName" : _fullName1,
-						"password" : _password1
+					"id" : _row1.id,
+					"address" : _address1,
+					"city" : _city1,
+					"email" : _email1,
+					"role" : _role1,
+					"userName" : _userName1,
+					"fullName" : _fullName1
 				};
 				EasyuiUtil.Messager.showWaiting();
-				$.post(basePath + "/rest/user/register2", _data, function(r) {
+				$.post(basePath + "/rest/user/updateuser", _data, function(r) {
 					if (r.result) {
 						EasyuiUtil.Messager.closeWaiting();
 						ResourceApp.closeResourceDialog();
 						ResourceApp.reloadData();
 					} else {
 						alert(r.message);
+						EasyuiUtil.Messager.closeWaiting();
+						ResourceApp.closeResourceDialog();
+						ResourceApp.reloadData();
 					}
 				}, "json");
 			}
-			
-		
+		 
 			window.ResourceApp = ResourceApp;
 			$(function() {
 				EasyuiUtil.Grid.initGrid(_gridId, {
 					url : basePath + "/rest/user/alluserlist",
-					toolbarConfig : {
+					/* toolbarConfig : {
 						add : {
 							text : "新增人员",
 							handler : ResourceApp.addReport
 						},
 						remove : {
 							text : "删除人员",
-							handler : ResourceApp.deleteAllReport
+							handler : ResourceApp.fabuAllReport
 						}
-					}  
+					}  */
 				});
 				
 			});

@@ -30,9 +30,15 @@
   <select id="allStockList" resultMap="BaseResultMap" parameterType="com.manager.entity.InfoStockEntity">
     select 
     <include refid="Base_Column_List" />
-    from STOCK where 1=1 
+    from STOCK where 1=1
     <if test="productName !=null and  productName !=''">
-   and  PRODUCTNAME=#{productName,jdbcType=VARCHAR}
+    and PRODUCTNAME like '%${productName}%'
+    </if>
+     <if test="category !=null and  category !=''">
+    and CATEGORY like '%${category}%'
+    </if>
+     <if test="privider !=null and privider !=''">
+    and PRIVIDER like '%${privider}%'
     </if>
     order by ID limit #{page.startRow,jdbcType=INTEGER},10
   </select>

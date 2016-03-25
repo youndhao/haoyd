@@ -42,7 +42,7 @@
 				<th data-options="field:'time',align:'center',width:50,formatter:ResourceApp.operatorFmt1">季度</th>
 				<th data-options="field:'isPass',align:'center',width:50,formatter:ResourceApp.operatorFmt2">状态</th>
 				<th data-options="field:'advice',align:'center',width:100">领导意见</th>
-			<c:if test="${user.role==3}">
+			<c:if test="${user.role>3}">
 			<th data-options="field:'stu',width:50 ,align:'center',formatter:ResourceApp.operatorFmt ">操作</th>
 			</c:if>
 			</tr>
@@ -55,8 +55,8 @@
 		</div>
 		<div style="margin-bottom:20px">
 			<div>是否通过:
-			<select id="ispass2" style="width:50%;height:32px"><option value="0">审核中</option>
-			<option value="1">通过</option><option value="2">不通过</option></select></div>
+			<select id="ispass2" style="width:50%;height:32px"><option value="0">会商</option>
+			<option value="1">审核</option><option value="2">签发</option><option value="3">注发</option></select></div>
 		</div>
 		<div style="margin-bottom:20px">
 			<div>填写意见:</div>
@@ -116,13 +116,16 @@
 			ResourceApp.operatorFmt2 = function(value, row, index) {
 
 				if (value == '0') {
-					return "审批中";
+					return "会商";
 				}
 				if (value == '1') {
-					return "通过";
+					return "审核";
 				}
 				if (value == '2') {
-					return "未通过";
+					return "签发";
+				}
+				if (value == '3') {
+					return "注发";
 				}
 			};
 			ResourceApp.operatorFmt = function(value, row, index) {

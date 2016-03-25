@@ -61,7 +61,7 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					个人信息 <span class="divider">/</span>
+					个人中心 <span class="divider">/</span>
 					</li>
 			<li class="active">
 					修改密码

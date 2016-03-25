@@ -36,7 +36,9 @@
 		
 			<div class="form-search" >
 				商品名称：<input type="text" id="Name" />
-				<button type="button" class="btn btn-success resource-search-btn" onclick="ResourceApp.selectReport()"><i class="icon-search icon-white"></i> 搜索</button>
+				商品类别：<input type="text" id="category" />
+				商品供应商：<input type="text" id="privider" />
+				<button type="button" class="btn btn-success resource-search-btn" onclick="ResourceApp.selectReport()"><i class="icon-search icon-white"></i>查询</button>
 			</div>
 				<table id="ReportGrid" singleSelect="true" title="商品入库信息">
 					<thead>
@@ -77,9 +79,13 @@
     		
     		
     		var _productName1 = $("#Name").val();
+    		var _category1 = $("#category").val();
+    		var _privider1 = $("#privider").val();
     	
     	    ResourceApp.reloadData({
-    		productName: _productName1
+    		productName: _productName1,
+    		category:_category1,
+    		privider: _privider1
     	});
     	    
     };

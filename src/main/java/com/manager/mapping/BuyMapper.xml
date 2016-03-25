@@ -13,6 +13,8 @@
     <id column="MID" property="mid" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="COST" property="cost" jdbcType="FLOAT" />
+    <result column="MOUNT" property="mount" jdbcType="INTEGER" />
+    <result column="TOTALMONEY" property="totalmoney" jdbcType="FLOAT" />
   </resultMap>
   <resultMap type="com.manager.entity.Time" id="timeMap">
   	<result column="YEAR" property="year" jdbcType="VARCHAR"/>
@@ -26,18 +28,18 @@
   	<result column="NAME" property="name" jdbcType="VARCHAR"/>
   	<result column="COST" property="cost" jdbcType="FLOAT"/>
   	<result column="COUNT" property="count" jdbcType="INTEGER"/>
-  	<result column="ADRESS" property="adress" jdbcType="VARCHAR"/>
+  	<result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
   	<result column="MONEY" property="money" jdbcType="FLOAT"/>
   	<result column="STATE" property="state" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    MID, NAME,COST
+    MID, NAME,COST,MOUNT
   </sql>
 
     <insert id="addMaterial" parameterType="com.manager.entity.Material" >
-    insert into MATERIAL ( MID, NAME,COST
+    insert into MATERIAL ( MID, NAME,COST,MOUNT
       )
-    values ( #{mid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{cost,jdbcType=FLOAT}
+    values ( #{mid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{cost,jdbcType=FLOAT}, #{mount,jdbcType=INTEGER}
    )
   </insert>
   <select id="orderList" resultMap="BuyOrderResultMap" parameterType="com.manager.entity.BuyOrder">
@@ -62,10 +64,10 @@
    and time=#{time,jdbcType=VARCHAR}
   </select>
   <select id="buyMaterialList" resultMap="buyMaterialList" parameterType="com.manager.entity.BuyOrder">
-  select BMCONN.MID,YEAR,TIME,COST,COUNT,MONEY,ADDRESS,NAME,STATE
+  select BMCONN.MID,YEAR,TIME,COST,COUNT,ADDRESS,NAME,STATE
   from BMCONN,MATERIAL,BUYMATERIAL
   where BMCONN.MID=MATERIAL.MID and BMCONN.BID=BUYMATERIAL.BID 
-  and YEAR=#{year,jdbcType=VARCHAR} and time=#{time,jdbcType=VARCHAR}
+  and YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR}
   order by BMCONN.BID limit #{page.startRow,jdbcType=INTEGER},10
   </select>
   <select id="selectMaterials" resultMap="BaseResultMap">
@@ -100,4 +102,10 @@
   <select id="selectTime" resultMap="timeMap" >
   select YEAR,TIME from BUYMATERIAL 
   </select>
+  <update id="editState" parameterType="com.manager.entity.BuyMaterialList">
+  update BMCONN,BUYMATERIAL set STATE=#{state,jdbcType=VARCHAR},ADDRESS=#{address,jdbcType=VARCHAR}
+  where BMCONN.BID=BUYMATERIAL.BID and BMCONN.MID=#{mid,jdbcType=VARCHAR} and
+  YEAR=#{year,jdbcType=VARCHAR} and time=#{time,jdbcType=VARCHAR}
+  
+  </update>
 </mapper>
