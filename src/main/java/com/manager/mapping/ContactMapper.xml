@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manager.mapping.ContactMapper">
+<resultMap id="BaseResultMap" type="com.manager.entity.Contact" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="REGION" property="region" jdbcType="VARCHAR" />
+    <result column="HEAD" property="head" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="MAIL" property="mail" jdbcType="VARCHAR" />
+    
+  </resultMap>
+<sql id="Base_Column_List" >
+    ID, REGION, HEAD, MOBILE, PHONE, MAIL
+  </sql>
+
+<insert id="insertcontact" parameterType="com.manager.entity.Contact">
+ insert into contact (ID, REGION, HEAD, MOBILE, PHONE, MAIL)
+ values (#{id,jdbcType=INTEGER},#{region,jdbcType=VARCHAR},#{head,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},
+       #{phone,jdbcType=VARCHAR},#{mail,jdbcType=VARCHAR})
+</insert>
+<select id="selectTotal"  resultType="int" parameterType="com.manager.entity.Contact">
+  	select count(ID)
+  	from contact
+  	
+  </select>
+  
+  <select id="allContactList" resultMap="BaseResultMap" parameterType="com.manager.entity.InfoContactEntity">
+    select 
+    <include refid="Base_Column_List" />
+    from CONTACT where 1=1
+    <if test="region !=null and  region !=''">
+    and REGION like '%${region}%'
+    </if>
+     <if test="head !=null and  head !=''">
+    and HEAD like '%${head}%'
+    </if>
+     
+    order by ID limit #{page.startRow,jdbcType=INTEGER},10
+  </select>
+  <select id="selectTotalContact"  resultType="int" parameterType="com.manager.entity.InfoContactEntity">
+  	select count(ID)
+  	from CONTACT
+  </select>
+   <delete id="deletecontact" parameterType="java.lang.Integer" >
+   delete from CONTACT where id in
+		<foreach collection="array" item="id2" open="(" separator=","
+			close=")" index="index">
+			#{id2}
+		</foreach>
+  </delete> 
+   
+  <update id="updatecontact" parameterType="com.manager.entity.Contact">
+  update contact set REGION=#{region,jdbcType=VARCHAR},HEAD=#{head,jdbcType=VARCHAR}, 
+  MOBILE=#{mobile,jdbcType=VARCHAR},PHONE=#{phone,jdbcType=VARCHAR},MAIL=#{mail,jdbcType=VARCHAR} where ID=#{id,jdbcType=INTEGER}
+  </update>
+</mapper>

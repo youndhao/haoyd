@@ -63,9 +63,14 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							<a href="#">Link</a>
+							<a href="www.baidu.com">Link</a>
 						</li>
-						
+						<li class="active">
+							<a href="www.baidu.com">Link</a>
+						</li>
+						<li class="active">
+							<a href="www.baidu.com">Link</a>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-left">
 					<li >
@@ -164,21 +169,20 @@
 			<div class="link"><i class="fa fa-mobile"></i>关于产品<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 				
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
+				<li><a href="${base_path}/rest/about/about1"> <b>产品展示</b> </a></li>
+				<li><a href="${base_path}/rest/about/about2"> <b>产品展示</b> </a></li>
+				<li><a href="${base_path}/rest/about/about3"> <b>产品展示</b> </a></li>
 			</ul>
 		</li>
 		<li>
 			<div class="link"><i class="fa fa-globe"></i>联系我们<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
-				
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
-				<li><a href="http://www.jq22.com">jQuery插件库</a></li>
+				<li><a href="${base_path}/rest/about/contact"> <b>联系我们</b> </a></li>
 			</ul>
 		</li>
 		 
 	</ul>
-          <div class="menu-footer">copyright-2016 @Youndhao</div>
+          <div class="menu-footer">Copyright © Youndhao-2016</div>
         </div>
       </nav>
 				</div>
@@ -194,12 +198,19 @@
   <script type="text/javascript" src="${js_path}/highcharts/highcharts.src.js"></script>
   <script type="text/javascript" src="${js_path}/highcharts/exporting.js"></script>
 <script type="text/javascript">
-function startTime()
-{
 
-document.getElementById('txt1').innerHTML=new Date()
-t=setTimeout('startTime()',500)
-}
+function startTime(){
+    //获得显示时间的div
+    t_div = document.getElementById('txt1');
+   var now=new Date()
+    //替换div内容 
+   t_div.innerHTML = "现在是"+now.getFullYear()
+    +"年"+(now.getMonth()+1)+"月"+now.getDate()
+    +"日"+now.getHours()+"时"+now.getMinutes()
+    +"分"+now.getSeconds()+"秒";
+    //等待一秒钟后调用time方法，由于settimeout在time方法内，所以可以无限调用
+   setTimeout(startTime,1000);
+  }
 
 
 </script>

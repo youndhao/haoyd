@@ -105,17 +105,15 @@
 		            type: 'column'
 		        },
 		        title: {
-		            text: 'Browser market shares. January, 2015 to May, 2015'
+		            text: '年度销量统计'
 		        },
-		        subtitle: {
-		            text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
-		        },
+	
 		        xAxis: {
 		            type: 'category'
 		        },
 		        yAxis: {
 		            title: {
-		                text: 'Total percent market share'
+		                text: '所占市场份额比'
 		            }
 
 		        },
@@ -141,35 +139,35 @@
 		            name: 'Brands',
 		            colorByPoint: true,
 		            data: [{
-		                name: 'Microsoft Internet Explorer',
+		                name: '手机',
 		                y: 56.33,
-		                drilldown: 'Microsoft Internet Explorer'
+		                drilldown: '手机'
 		            }, {
-		                name: 'Chrome',
+		                name: '电脑',
 		                y: 24.03,
-		                drilldown: 'Chrome'
+		                drilldown: '电脑'
 		            }, {
-		                name: 'Firefox',
+		                name: '键盘',
 		                y: 10.38,
-		                drilldown: 'Firefox'
+		                drilldown: '键盘'
 		            }, {
-		                name: 'Safari',
+		                name: '鼠标',
 		                y: 4.77,
-		                drilldown: 'Safari'
+		                drilldown: '鼠标'
 		            }, {
-		                name: 'Opera',
+		                name: '耳机',
 		                y: 0.91,
-		                drilldown: 'Opera'
+		                drilldown: '耳机'
 		            }, {
-		                name: 'Proprietary or Undetectable',
+		                name: '其他',
 		                y: 0.2,
 		                drilldown: null
 		            }]
 		        }],
 		        drilldown: {
 		            series: [{
-		                name: 'Microsoft Internet Explorer',
-		                id: 'Microsoft Internet Explorer',
+		                name: '手机',
+		                id: '手机',
 		                data: [
 		                    [
 		                        'v11.0',
@@ -197,8 +195,8 @@
 		                    ]
 		                ]
 		            }, {
-		                name: 'Chrome',
-		                id: 'Chrome',
+		                name: '电脑',
+		                id: '电脑',
 		                data: [
 		                    [
 		                        'v40.0',
@@ -258,8 +256,8 @@
 		                    ]
 		                ]
 		            }, {
-		                name: 'Firefox',
-		                id: 'Firefox',
+		                name: '键盘',
+		                id: '键盘',
 		                data: [
 		                    [
 		                        'v35',
@@ -295,8 +293,8 @@
 		                    ]
 		                ]
 		            }, {
-		                name: 'Safari',
-		                id: 'Safari',
+		                name: '鼠标',
+		                id: '鼠标',
 		                data: [
 		                    [
 		                        'v8.0',
@@ -328,8 +326,8 @@
 		                    ]
 		                ]
 		            }, {
-		                name: 'Opera',
-		                id: 'Opera',
+		                name: '耳机',
+		                id: '耳机',
 		                data: [
 		                    [
 		                        'v12.x',
@@ -414,17 +412,17 @@
             type: 'pie',
             name: '所占百分比',
             data: [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
+                ['手机',   45.0],
+                ['电脑',       26.8],
                 {
-                    name: 'Chrome',
+                    name: '电脑',
                     y: 12.8,
                     sliced: true,
                     selected: true
                 },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
-                ['Others',   0.7]
+                ['键盘',    8.5],
+                ['耳机',     6.2],
+                ['其他',   0.7]
             ]
         }]
     });  

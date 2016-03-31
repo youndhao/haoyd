@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance  http://www.springmodules.org/schema/cache/springmodules-cache.xsd http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd"    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee      
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd          
+     ">    
+  
+
+<product>
+	<title value="Product00" />
+	<content>www.mb5u.com</content>
+	<thumb value="thumb/thumb0.jpg" />
+	<image value="image/image0.jpg" />
+</product>
+<product>
+	<title value="Product 01" />
+	<content>www.mb5u.com</content>
+	<thumb value="thumb/thumb1.jpg" />
+	<image value="image/image1.jpg" />
+</product>
+<product>
+	<title value="Product 02" />
+	<content>www.mb5u.com</content>
+	<thumb value="thumb/thumb2.jpg" />
+	<image value="image/image2.jpg" />
+</product>
+<product>
+	<title value="Product 03" />
+	<content>www.mb5u.com</content>
+	<thumb value="thumb/thumb3.jpg" />
+	<image value="image/image3.jpg" />
+</product>
+<product>
+	<title value="Product 04" />
+	<content>www.mb5u.com</content>
+	<thumb value="thumb/thumb4.jpg" />
+	<image value="image/image4.jpg" />
+</product>
+
+<option
+viewImgNum="6"
+xMain="1"
+yMain="1"
+xThumb="52"
+yThumb="280"
+xSpaceThumb="6"
+thumbXsize="74"
+thumbYsize="120"
+maskMargin="3"
+/>
+</web-app>
