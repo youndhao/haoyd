@@ -25,10 +25,10 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					销售预算 <span class="divider">/</span>
+					销售管理 <span class="divider">/</span>
 					</li>
 			<li class="active">
-					录入销售预算
+					增加销售预算
 					</li>
 	</ul>
 	<div>

@@ -64,7 +64,7 @@
    and TIME=#{time,jdbcType=VARCHAR}
   </select>
   <select id="buyMaterialList" resultMap="buyMaterialList" parameterType="com.manager.entity.BuyOrder">
-  select BMCONN.MID,YEAR,TIME,COST,COUNT,ADDRESS,NAME,STATE from BMCONN,MATERIAL,BUYMATERIAL
+  select BMCONN.MID,YEAR,TIME,COST,COUNT,(MATERIAL.COST*BMCONN.COUNT) 'MONEY',ADDRESS,NAME,STATE from BMCONN,MATERIAL,BUYMATERIAL
   where BMCONN.MID=MATERIAL.MID and BMCONN.BID=BUYMATERIAL.BID 
   and YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} 
   order by BMCONN.BID limit #{page.startRow,jdbcType=INTEGER},10

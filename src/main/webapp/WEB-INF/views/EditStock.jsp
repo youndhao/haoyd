@@ -27,13 +27,13 @@
 					库存管理<span class="divider">/</span>
 					</li>
 			<li class="active">
-					编辑库存信息
+					商品信息修改
 					</li>
 	</ul>
 	<!-- -->
 	<BR>
 
-	<table id="ReportGrid"  title="库存信息管理">
+	<table id="ReportGrid"  title="商品信息修改">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>

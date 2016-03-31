@@ -121,10 +121,10 @@
 			<div class="link"><i class="fa fa-code"></i>销售管理<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
 			<c:if test="${user.role==1||user.role>2}">
-			    <li><a href="${base_path}/rest/sale/addsalehistory"><b>录入往年销售情况</b></a></li>
-                <li><a href="${base_path}/rest/sale/salehistory"><b>分析往年销售情况</b></a></li>
+			    <li><a href="${base_path}/rest/sale/addsalehistory"><b>录入往年销售</b></a></li>
+                <li><a href="${base_path}/rest/sale/salehistory"><b>往年销售统计</b></a></li>
                 <li><a href="${base_path}/rest/sale/product"><b>录入产品库</b></a></li>
-                <li><a href="${base_path}/rest/sale/salebudget"><b>填写今年销售预算</b></a></li>
+                <li><a href="${base_path}/rest/sale/salebudget"><b>今年销售预算</b></a></li>
 				</c:if>
                 <li><a href="${base_path}/rest/sale/salebudgetlist"><b>查看销售预算详情</b></a></li>
                 <li><a href="${base_path}/rest/manage/managesalebudget"><b>查看销售预算清单</b></a></li>
@@ -132,19 +132,19 @@
 		</li>
 		<c:if test="${user.role>1}">
 		<li>
-			<div class="link"><i class="fa fa-mobile"></i>产品采购<i class="fa fa-chevron-down"></i></div>
+			<div class="link"><i class="fa fa-mobile"></i>商品采购<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
-				 <li><a href="${base_path}/rest/buy/buymaterial"> <b>产品采购预算</b> </a></li>
-                <li><a href="${base_path}/rest/buy/BuyMaterialList"> <b>产品采购清单</b></a></li>
+				 <li><a href="${base_path}/rest/buy/buymaterial"> <b>增加采购预算</b> </a></li>
+                <li><a href="${base_path}/rest/buy/BuyMaterialList"> <b>商品采购清单</b></a></li>
                 <li><a href="${base_path}/rest/buy/material"> <b>录入产品库</b> </a></li>
-                <li><a href="${base_path}/rest/buy/materialstate"> <b>采购流程追踪</b> </a></li>
+                <li><a href="${base_path}/rest/buy/materialstate"> <b>采购流程跟踪</b> </a></li>
 			</ul>
 		</li>
 		</c:if>
             <c:if test="${user.role>2}">
-		<li><div class="link"><i class="fa fa-globe"></i>领导审批<i class="fa fa-chevron-down"></i></div>
+		<li><div class="link"><i class="fa fa-globe"></i>领导审核<i class="fa fa-chevron-down"></i></div>
 			<ul class="submenu">
-				 <li><a href="${base_path}/rest/manage/managesalebudget"> <b>销售预算审请</b></a></li>
+				 <li><a href="${base_path}/rest/manage/managesalebudget"> <b>销售预算审核</b></a></li>
                 <li><a href="${base_path}/rest/manage/managebuyorder"> <b>采购清单审核</b></a></li>
 			</ul>
 		</li>

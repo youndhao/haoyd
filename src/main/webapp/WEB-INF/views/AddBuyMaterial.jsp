@@ -25,10 +25,10 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					原材料采购<span class="divider">/</span>
+					商品采购<span class="divider">/</span>
 					</li>
 			<li class="active">
-					原材料采购预算
+					商品采购预算
 					</li>
 	</ul>
 	<div>

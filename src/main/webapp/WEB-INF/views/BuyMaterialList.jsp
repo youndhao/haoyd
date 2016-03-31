@@ -24,10 +24,10 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					原材料采购<span class="divider">/</span>
+					商品采购<span class="divider">/</span>
 					</li>
 			<li class="active">
-					录入原材料库
+					录入产品库
 					</li>
 	</ul>
 	<!-- -->

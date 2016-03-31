@@ -27,7 +27,7 @@
 					库存管理 <span class="divider">/</span>
 					</li>
 			<li class="active">
-					商品入库查询
+					商品信息查询
 					</li>
 	</ul>
 	<BR>
@@ -35,12 +35,12 @@
 	
 		
 			<div class="form-search" >
-				商品名称：<input type="text" id="Name" />
-				商品类别：<input type="text" id="category" />
-				商品供应商：<input type="text" id="privider" />
+				商品名称：<input type="text" id="Name" placeholder="请输入商品名称"/>
+				商品类别：<input type="text" id="category" placeholder="请输入商品类别"/>
+				商品供应商：<input type="text" id="privider" placeholder="请输入供应商"/>
 				<button type="button" class="btn btn-success resource-search-btn" onclick="ResourceApp.selectReport()"><i class="icon-search icon-white"></i>查询</button>
 			</div>
-				<table id="ReportGrid" singleSelect="true" title="商品入库信息">
+				<table id="ReportGrid" singleSelect="true" title="入库商品信息查询">
 					<thead>
 	                    <tr>
 			                <th data-options="field:'ck',checkbox:true"></th>

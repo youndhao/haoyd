@@ -24,10 +24,10 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					领导审批<span class="divider">/</span>
+					领导审核<span class="divider">/</span>
 					</li>
 			<li class="active">
-					销售预算审批
+					销售预算审核
 					</li>
 	</ul>
 	<!-- -->

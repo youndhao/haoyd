@@ -50,7 +50,7 @@
 				<th data-options="field:'money',align:'center',width:40 ">总金额</th>
 				<th data-options="field:'address',width:100 ">采购地址</th>
 				<th data-options="field:'state',align:'center',width:40 ">状态</th>
-				<c:if test="${user.role==2}">
+				<c:if test="${user.role>2}">
 				 <th data-options="field:'stu',width:100 ,align:'center',formatter:ResourceApp.operatorFmt ">操作</th>
 				</c:if>
 			</tr>

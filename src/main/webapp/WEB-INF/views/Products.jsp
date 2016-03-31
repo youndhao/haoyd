@@ -24,16 +24,16 @@
 					首页 <span class="divider">/</span>
 					</li>
 			<li>
-					销售预算 <span class="divider">/</span>
+					销售管理 <span class="divider">/</span>
 					</li>
 			<li class="active">
-					查看所有产品
+					查看产品库
 					</li>
 	</ul>
 	<!-- -->
 	<BR>
 
-	<table id="ReportGrid"  title="报告信息">
+	<table id="ReportGrid"  title="产品库信息">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>

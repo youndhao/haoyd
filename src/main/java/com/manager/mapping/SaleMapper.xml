@@ -111,7 +111,7 @@ and YEAR=#{year,jdbcType=VARCHAR} and TIME=#{time,jdbcType=VARCHAR} and Type=0
   	type=1 and year=#{year,jdbcType=VARCHAR} and time=#{time,jdbcType=VARCHAR}
   </select>
   <select id="budgetList" resultMap="budgetlist" parameterType="com.manager.entity.BuyOrder">
-  select PSCONN.PID,YEAR,TIME,NAME,COST,MONEY,COUNT 
+  select PSCONN.PID,YEAR,TIME,NAME,COST,COUNT,(PRODUCT.COST*PSCONN.COUNT) 'MONEY' 
   from SALEHISTORY,PRODUCT,PSCONN
   where SALEHISTORY.HID=PSCONN.HID and PSCONN.PID=PRODUCT.PID and SALEHISTORY.TYPE=1 and SALEHISTORY.YEAR=#{year,jdbcType=VARCHAR} and SALEHISTORY.TIME=#{time,jdbcType=VARCHAR}
   order by PSCONN.PID limit #{page.startRow,jdbcType=INTEGER},10

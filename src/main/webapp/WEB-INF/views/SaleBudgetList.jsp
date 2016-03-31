@@ -40,7 +40,7 @@
 					</div> 
 	<BR>
 
-	<table id="ReportGrid"  title="销售预算信息">
+	<table id="ReportGrid"  title="销售预算详情">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
