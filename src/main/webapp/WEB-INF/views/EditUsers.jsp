@@ -32,7 +32,7 @@
 	<!-- -->
 	<BR>
 
-	<table id="ReportGrid"  title="报告信息">
+	<table id="ReportGrid"  title="人员组织管理">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>

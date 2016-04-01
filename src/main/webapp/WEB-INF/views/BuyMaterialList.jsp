@@ -36,11 +36,11 @@
 	<table id="ReportGrid"  title="原材料采购清单">
 		<thead>
 			<tr>
-				<th data-options="field:'bid',width:100">采购单编码</th>
+				<th data-options="field:'bid',align:'center',width:100">采购单编码</th>
 				<th data-options="field:'year',align:'center',width:50">年份</th>
 				<th data-options="field:'time',align:'center',width:50,formatter:ResourceApp.operatorFmt1">季度</th>
 				<th data-options="field:'isPass',align:'center',width:50,formatter:ResourceApp.operatorFmt2">状态</th>
-				<th data-options="field:'advice',width:100">领导意见</th>
+				<th data-options="field:'advice',align:'center',width:100">领导意见</th>
 			</tr>
 		</thead>
 	</table>

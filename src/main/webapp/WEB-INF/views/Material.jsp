@@ -37,7 +37,7 @@
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'mid',width:100">原材料编码</th>
+				<th data-options="field:'mid',align:'center',width:100">原材料编码</th>
 				<th data-options="field:'name',align:'center',width:50">原材料名</th>
 				<th data-options="field:'cost',align:'center',width:50">价格</th>
 				<th data-options="field:'mount',align:'center',width:50">数量</th>

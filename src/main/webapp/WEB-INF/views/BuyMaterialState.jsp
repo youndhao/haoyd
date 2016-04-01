@@ -41,14 +41,14 @@
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'mid',width:140">原材料编号</th>
+				<th data-options="field:'mid',width:100">原材料编号</th>
 				<th data-options="field:'year',align:'center',width:40">年份</th>
 				<th data-options="field:'time',width:40,align:'center',formatter:ResourceApp.operatorFmt1">季度</th>
 				<th data-options="field:'name',align:'center',width:40">产品</th>
 				<th data-options="field:'cost',align:'center',width:40">单价(/元)</th>
-				<th data-options="field:'count',align:'center',width:40">采购数量(/个)</th>
+				<th data-options="field:'count',align:'center',width:70">采购数量(/个)</th>
 				<th data-options="field:'money',align:'center',width:40 ">总金额</th>
-				<th data-options="field:'address',width:100 ">采购地址</th>
+				<th data-options="field:'address',align:'center',width:100 ">采购地址</th>
 				<th data-options="field:'state',align:'center',width:40 ">状态</th>
 				<c:if test="${user.role>2}">
 				 <th data-options="field:'stu',width:100 ,align:'center',formatter:ResourceApp.operatorFmt ">操作</th>

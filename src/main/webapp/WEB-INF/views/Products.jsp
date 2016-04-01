@@ -37,7 +37,7 @@
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'pid',width:100">产品编码</th>
+				<th data-options="field:'pid',align:'center',width:100">产品编码</th>
 				<th data-options="field:'name',align:'center',width:50">产品名</th>
 				<th data-options="field:'salemoney',align:'center',width:50">售价</th>
 				<th data-options="field:'cost',align:'center',width:50">成本</th>
