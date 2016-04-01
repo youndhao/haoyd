@@ -48,7 +48,7 @@
 				<th data-options="field:'year',align:'center',width:40">年份</th>
 				<th data-options="field:'time',align:'center',width:40">季度</th>
 				<th data-options="field:'name',align:'center',width:60">产品名称</th>
-				<th data-options="field:'cost',align:'center',width:40">产品售价</th>
+				<th data-options="field:'salemoney',align:'center',width:40">产品售价</th>
 				<th data-options="field:'count',align:'center',width:40">销售数量</th>
 				<th data-options="field:'money',align:'center',width:50 ">销售总额</th>
 				<!-- <th data-options="field:'stu',width:100 ,align:'center',formatter:ResourceApp.operatorFmt ">操作</th> -->

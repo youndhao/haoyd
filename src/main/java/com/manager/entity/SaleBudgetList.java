@@ -14,7 +14,7 @@ private String pid;
 	private float cost;
 	
 	private float money;
-
+    private float salemoney;
 	public String getPid() {
 		return pid;
 	}
@@ -70,6 +70,15 @@ private String pid;
 	public void setMoney(float money) {
 		this.money = money;
 	}
+
+	public float getSalemoney() {
+		return salemoney;
+	}
+
+	public void setSalemoney(float salemoney) {
+		this.salemoney = salemoney;
+	}
+	
 	
 
 }
