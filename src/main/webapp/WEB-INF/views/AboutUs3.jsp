@@ -58,16 +58,18 @@ body{ font-size:12px; line-height:24px;color: red}
 .exp6{font-size:smaller;} 
 .exp7{font-size:50%;} 
 .exp8{font-size:150%;} 
+#content2{margin-top:50px;margin-bottom:30px}
+
 </style> 
 </head>
 <body>
 
 
 <!-- 代码 开始 -->
-<div id="ww">www</div>
 
-<div align="center" class="exp8" >恪守信誉、以人为本，科技创新、质量第一</div> 
-<div id="content">
+<div id="111">产品展示</div> 
+<div align="center" class="exp8" id="content2">恪守信誉、以人为本，科技创新、质量第一</div> 
+<div id="content1">
     <div class="mygallery clearfix">
 	<div class="tn3 album">
 	    <h4>Fixed Dimensions</h4>

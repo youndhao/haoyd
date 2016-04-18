@@ -39,6 +39,7 @@
 				商品类别：<input type="text" id="category" placeholder="请输入商品类别"/>
 				商品供应商：<input type="text" id="privider" placeholder="请输入供应商"/>
 				<button type="button" class="btn btn-success resource-search-btn" onclick="ResourceApp.selectReport()"><i class="icon-search icon-white"></i>查询</button>
+			<button type="button" class="btn btn-primary"  onclick="ResourceApp.exportAll();"><span class='glyphicon glyphicon-export'>导出全部</span></button>&nbsp;
 			</div>
 				<table id="ReportGrid" singleSelect="true" title="入库商品信息查询">
 					<thead>
@@ -63,7 +64,13 @@
 
 (function(window, $) {
 	var _gridId = 'ReportGrid';
-	var ResourceApp = {};
+	var ResourceApp = {
+			exportAll:function(){
+				window.open(basePath+"/rest/export/exportAll");
+			}
+			
+			
+	};
 	// 加载数据
 	ResourceApp.reloadData = function(p_queryParams) {
 		$("#" + _gridId).datagrid('clearSelections').datagrid("load",
@@ -87,8 +94,11 @@
     		category:_category1,
     		privider: _privider1
     	});
-    	    
+    	   
     };
+    
+
+
     	
 	EasyuiUtil.Grid.initGrid(_gridId,{
 		url : basePath + "/rest/stock/allstocklist",

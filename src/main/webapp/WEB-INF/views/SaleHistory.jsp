@@ -14,342 +14,63 @@
     	var _baseOperatePath = basePath+'/rest/sale';
 		var _queryPath = _baseOperatePath+'/saleyearlist';
 		var _queryPath2 = _baseOperatePath+'/saletimelist';
+		
 		var chart = new Highcharts.Chart({  
-			
-		            chart: {
-		                renderTo: 'container',
-		                type: 'spline',
-		                animation: Highcharts.svg,
-		                // don't animate in old IE               
-		                marginRight: 10,
-		                events: {
-		                    load: function() {}
-		                }
-		            },
-		            title: {
-		                text: 'Live random data'
-		            },
-		            xAxis: {
-		                type: 'datetime',
-		                tickPixelInterval: 150
-		            },
-		            yAxis: [{
-		                title: {
-		                    text: 'Value'
-		                },
-		                plotLines: [{
-		                    value: 0,
-		                    width: 1,
-		                    color: '#808080'
-		                }]
-		            },
-		            {
-		                title: {
-		                    text: 'Name'
-		                },
-		                plotLines: [{
-		                    value: 0,
-		                    width: 1,
-		                    color: '#808080'
-		                }]
-		            }],
-		            tooltip: {
-		                formatter: function() {
-		                    return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2);
-		                }
-		            },
-		            legend: {
-		                enabled: false
-		            },
-		            exporting: {
-		                enabled: false
-		            },
-		            series: [{
-		                name: 'Random data',
-		                data: (function() { // generate an array of random data                             
-		                    var data = [],
-		                    time = (new Date()).getTime(),
-		                    i;
-		                    for (i = -19; i <= 0; i++) {
-		                        data.push({
-		                            x: time + i * 1000,
-		                            y: Math.random()
-		                        });
-		                    }
-		                    return data;
-		                })()
-		            },
-		            {
-		                name: 'Random data',
-		                data: (function() { // generate an array of random data                             
-		                    var data = [],
-		                    time = (new Date()).getTime(),
-		                    i;
-		                    for (i = -19; i <= 0; i++) {
-		                        data.push({
-		                            x: time + i * 1000,
-		                            y: Math.random()
-		                        });
-		                    }
-		                    return data;
-		                })()
-		            }]
-		        });
-		$(function () {
-		    // Create the chart
-		    var _baseOperatePath = basePath+'/rest/sale';
-		var _queryPath = _baseOperatePath+'/saleyearlist';
-		var _queryPath2 = _baseOperatePath+'/saletimelist';
-		    $('#container').highcharts({
-		        chart: {
-		            type: 'column'
-		        },
-		        title: {
-		            text: '年度销量统计'
-		        },
-	
-		        xAxis: {
-		            type: 'category'
-		        },
-		        yAxis: {
-		            title: {
-		                text: '所占市场份额比'
-		            }
-
-		        },
-		        legend: {
-		            enabled: false
-		        },
-		        plotOptions: {
-		            series: {
-		                borderWidth: 0,
-		                dataLabels: {
-		                    enabled: true,
-		                    format: '{point.y:.1f}%'
-		                }
-		            }
-		        },
-
-		        tooltip: {
-		            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-		            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-		        },
-
-		        series: [{
-		            name: 'Brands',
-		            colorByPoint: true,
-		            data: [{
-		                name: '手机',
-		                y: 56.33,
-		                drilldown: '手机'
-		            }, {
-		                name: '电脑',
-		                y: 24.03,
-		                drilldown: '电脑'
-		            }, {
-		                name: '键盘',
-		                y: 10.38,
-		                drilldown: '键盘'
-		            }, {
-		                name: '鼠标',
-		                y: 4.77,
-		                drilldown: '鼠标'
-		            }, {
-		                name: '耳机',
-		                y: 0.91,
-		                drilldown: '耳机'
-		            }, {
-		                name: '其他',
-		                y: 0.2,
-		                drilldown: null
-		            }]
-		        }],
-		        drilldown: {
-		            series: [{
-		                name: '手机',
-		                id: '手机',
-		                data: [
-		                    [
-		                        'v11.0',
-		                        24.13
-		                    ],
-		                    [
-		                        'v8.0',
-		                        17.2
-		                    ],
-		                    [
-		                        'v9.0',
-		                        8.11
-		                    ],
-		                    [
-		                        'v10.0',
-		                        5.33
-		                    ],
-		                    [
-		                        'v6.0',
-		                        1.06
-		                    ],
-		                    [
-		                        'v7.0',
-		                        0.5
-		                    ]
-		                ]
-		            }, {
-		                name: '电脑',
-		                id: '电脑',
-		                data: [
-		                    [
-		                        'v40.0',
-		                        5
-		                    ],
-		                    [
-		                        'v41.0',
-		                        4.32
-		                    ],
-		                    [
-		                        'v42.0',
-		                        3.68
-		                    ],
-		                    [
-		                        'v39.0',
-		                        2.96
-		                    ],
-		                    [
-		                        'v36.0',
-		                        2.53
-		                    ],
-		                    [
-		                        'v43.0',
-		                        1.45
-		                    ],
-		                    [
-		                        'v31.0',
-		                        1.24
-		                    ],
-		                    [
-		                        'v35.0',
-		                        0.85
-		                    ],
-		                    [
-		                        'v38.0',
-		                        0.6
-		                    ],
-		                    [
-		                        'v32.0',
-		                        0.55
-		                    ],
-		                    [
-		                        'v37.0',
-		                        0.38
-		                    ],
-		                    [
-		                        'v33.0',
-		                        0.19
-		                    ],
-		                    [
-		                        'v34.0',
-		                        0.14
-		                    ],
-		                    [
-		                        'v30.0',
-		                        0.14
-		                    ]
-		                ]
-		            }, {
-		                name: '键盘',
-		                id: '键盘',
-		                data: [
-		                    [
-		                        'v35',
-		                        2.76
-		                    ],
-		                    [
-		                        'v36',
-		                        2.32
-		                    ],
-		                    [
-		                        'v37',
-		                        2.31
-		                    ],
-		                    [
-		                        'v34',
-		                        1.27
-		                    ],
-		                    [
-		                        'v38',
-		                        1.02
-		                    ],
-		                    [
-		                        'v31',
-		                        0.33
-		                    ],
-		                    [
-		                        'v33',
-		                        0.22
-		                    ],
-		                    [
-		                        'v32',
-		                        0.15
-		                    ]
-		                ]
-		            }, {
-		                name: '鼠标',
-		                id: '鼠标',
-		                data: [
-		                    [
-		                        'v8.0',
-		                        2.56
-		                    ],
-		                    [
-		                        'v7.1',
-		                        0.77
-		                    ],
-		                    [
-		                        'v5.1',
-		                        0.42
-		                    ],
-		                    [
-		                        'v5.0',
-		                        0.3
-		                    ],
-		                    [
-		                        'v6.1',
-		                        0.29
-		                    ],
-		                    [
-		                        'v7.0',
-		                        0.26
-		                    ],
-		                    [
-		                        'v6.2',
-		                        0.17
-		                    ]
-		                ]
-		            }, {
-		                name: '耳机',
-		                id: '耳机',
-		                data: [
-		                    [
-		                        'v12.x',
-		                        0.34
-		                    ],
-		                    [
-		                        'v28',
-		                        0.24
-		                    ],
-		                    [
-		                        'v27',
-		                        0.17
-		                    ],
-		                    [
-		                        'v29',
-		                        0.16
-		                    ]
-		                ]
-		            }]
-		        }
-		    });
-		});
+        chart: {
+        	renderTo: 'container',
+            type: 'column',
+            margin: [ 50, 50, 100, 80]
+        },
+        title: {
+            text: '销售额统计'
+        },
+        xAxis: {
+            categories: [
+                '第一季度',
+                '第二季度',
+                '第三季度',
+                '第四季度',
+               
+            ],
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '单位 (万元)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '年销售情况 : <b>{point.y:.1f} 万元</b>',
+        },
+        series: [{
+            name: 'Population',
+            data: [0, 0, 0, 0],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    }); 
     
     function getForm(){  
         //使用JQuery从后台获取JSON格式的数据  
@@ -392,7 +113,7 @@
             }
         },
         title: {
-            text: '该季度销售情况'
+            text: '该季度销售额统计'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -412,17 +133,17 @@
             type: 'pie',
             name: '所占百分比',
             data: [
-                ['手机',   45.0],
-                ['电脑',       26.8],
+                ['手机',   0],
+                ['电脑',   0],
                 {
-                    name: '电脑',
-                    y: 12.8,
+                    name: '键盘',
+                    y: 0,
                     sliced: true,
                     selected: true
                 },
-                ['键盘',    8.5],
-                ['耳机',     6.2],
-                ['其他',   0.7]
+                ['鼠标',    0],
+                ['耳机',    0],
+                ['其他',    0]
             ]
         }]
     });  
@@ -477,6 +198,7 @@
 	<br>
   <div id="container1" style="min-width:700px;height:400px"></div>
  
+
 
 </body>
 </html>

@@ -1,14 +1,13 @@
 package com.manager.entity;
 
 public class SaleHistory {
-private String hid;
-	
+	private String hid;
 	private String year;
-	
+
 	private String time;
-	
+
 	private String name;
-	
+
 	private int count;
 
 	private int type;
@@ -20,6 +19,8 @@ private String hid;
 	public void setHid(String hid) {
 		this.hid = hid;
 	}
+
+	
 
 	public String getYear() {
 		return year;
@@ -60,6 +61,5 @@ private String hid;
 	public void setType(int type) {
 		this.type = type;
 	}
-	
 
 }

@@ -17,7 +17,7 @@
 	src="${js_path}/jquery-easyui/1.4.3/easyui.util.js"></script>
 </head>
 <body>
-<DIV id=demo style="BACKGROUND: #ffffff; OVERFLOW: hidden; WIDTH: 970px; COLOR: #0000ff; HEIGHT: 600px"> 
+<DIV id=demo style="BACKGROUND: #ffffff; OVERFLOW: hidden; WIDTH: 950px; COLOR: #0000ff; HEIGHT: 600px"> 
         <div id="ww">ddd</div>
         <div align="center" > 
          <table width="100%" border="0">
@@ -137,7 +137,7 @@
 			};
 			ResourceApp.operatorFmt = function(value, row, index) {
 				return "<a href='#' class='grid-linkbutton' iconCls='icon-delete' plain='true' "
-						+ "onclick='ResourceApp.editReport(\"" + index + "\")'>编辑</a>";
+						+ "onclick='ResourceApp.editReport(\"" + index + "\")'>修改人员信息</a>";
 			};
 			// 根据信息查找
 			ResourceApp.searchData = function() {

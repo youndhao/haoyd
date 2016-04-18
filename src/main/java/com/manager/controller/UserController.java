@@ -60,6 +60,18 @@ public class UserController {
 	public String toIndex4(){
 		return "index4";
 	}
+	@RequestMapping("/index5")
+	public String toIndex5(){
+		return "index5";
+	}
+	@RequestMapping("/index6")
+	public String toIndex6(){
+		return "index6";
+	}
+	@RequestMapping("/index7")
+	public String toIndex7(){
+		return "index7";
+	}
     @RequestMapping("/logout")
     public String logout(HttpServletRequest req,Model model){
     	req.getSession().removeAttribute("user");

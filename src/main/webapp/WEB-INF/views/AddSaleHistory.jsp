@@ -18,8 +18,6 @@
 </head>
 <body>
 	<input type="hidden" id="numForRecord" value="0" />
-		<br>
-		<br>
 	<ul class="breadcrumb">
 			<li>
 					首页 <span class="divider">/</span>
@@ -32,17 +30,12 @@
 					</li>
 	</ul>
 	<div>
-
-		<!-- 表单 start-->
 		<div>
-	
 			<form id="form">
 				<div>
-					
 					<div>
 					<input type="hidden" name="type" value="0" />
 						<table>
-						
 							<tr>
 								<td>
 								<input type="checkbox" id="selectAll" /></td>

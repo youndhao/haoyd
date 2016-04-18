@@ -116,7 +116,7 @@
 			};
 			ResourceApp.operatorFmt = function(value, row, index) {
 				return "<a href='#' class='grid-linkbutton' iconCls='icon-delete' plain='true' "
-						+ "onclick='ResourceApp.editReport(\"" + index + "\")'>编辑</a>";
+						+ "onclick='ResourceApp.editReport(\"" + index + "\")'>修改人员组织</a>";
 			};
 	
 			// 编辑报告
